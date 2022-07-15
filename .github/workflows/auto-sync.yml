@@ -26,6 +26,8 @@ jobs:
           destination_repo_name=test-repo-sync
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
+          pwd
+          ls
           git config --global user.name "Corallo"
           git config --global user.email "dellisanti.angelo@gmail.com"
           git clone $destination_repo
