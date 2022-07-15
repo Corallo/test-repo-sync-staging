@@ -20,13 +20,16 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
+          branch_name="Sync-$(date +'%d/%m/%Y')"
+          destination_repo=https://github.com/Corallo/test-repo-sync.git
+          destination_repo_name=test-repo-sync
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
           git config --global user.name "Auto-sync"
           git config --global user.email "dellisanti.angelo@gmail.com"
-          git clone https://github.com/Corallo/test-repo-sync.git
-          git -C ./test-repo-sync checkout -b "Sync-$(date +'%d/%m/%Y')" 
-          cp -r $GITHUB_WORKSPACE/* ./test-repo-sync/
-          git -C ./test-repo-sync add .
-          git -C ./test-repo-sync commit -m "Syncing with staging repo"
-          git -C ./test-repo-sync push
+          git clone $destination_repo
+          git -C ./$destination_repo_name checkout -b $branch_name 
+          cp -r $GITHUB_WORKSPACE/* ./$destination_repo_name/
+          git -C ./$destination_repo_name add .
+          git -C ./$destination_repo_name commit -m "Syncing with staging repo"
+          git -C ./$destination_repo_name push --set-upstream origin $branch_name 
