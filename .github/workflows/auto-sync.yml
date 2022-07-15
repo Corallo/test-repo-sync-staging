@@ -24,12 +24,11 @@ jobs:
           branch_name="Auto-sync-$(date +'%d/%m/%Y')"
           destination_repo="https://x-access-token:$API_TOKEN_GITHUB@github.com/Corallo/test-repo-sync.git"
           destination_repo_name=test-repo-sync
-          mkdir -p /tmp/sync_tmp
-          cd /tmp/sync_tmp
-          pwd
-          ls
           git config --global user.name "Corallo"
           git config --global user.email "dellisanti.angelo@gmail.com"
+         
+          mkdir -p /tmp/sync_tmp
+          cd /tmp/sync_tmp
           git clone $destination_repo
           git -C ./$destination_repo_name checkout -b $branch_name 
           cp -r $GITHUB_WORKSPACE/* ./$destination_repo_name/
