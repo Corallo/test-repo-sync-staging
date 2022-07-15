@@ -22,7 +22,8 @@ jobs:
         run: |
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
-
+          git config --global user.name "Auto-sync"
+          git config --global user.email "dellisanti.angelo@gmail.com"
           git clone https://github.com/Corallo/test-repo-sync.git
           git -C ./test-repo-sync checkout -b "Sync-$(date +'%d/%m/%Y')" 
           cp -r $GITHUB_WORKSPACE/* ./test-repo-sync/
