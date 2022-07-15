@@ -15,8 +15,10 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
+          
       - name: Clone and sync
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
