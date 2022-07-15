@@ -34,8 +34,9 @@ jobs:
           cp -r $GITHUB_WORKSPACE/* ./$destination_repo_name/
           git -C ./$destination_repo_name add .
           git -C ./$destination_repo_name commit -m "Syncing with staging repo"
+          continue-on-error: true
           if [ $? -eq 0 ]; then
-            git -C ./$destination_repo_name push --set-upstream origin $branch_name 
+            git -C ./$destination_repo_name push --set-upstream origin $branch_name    
           else
            echo "Nothing to commit :)"
           fi
