@@ -23,7 +23,7 @@ jobs:
 
           git clone https://github.com/Corallo/test-repo-sync.git
           git -C ./test-repo-sync checkout -b "Sync-$(date +'%d/%m/%Y')" 
-          cp -r ./$GITHUB_WORKSPACE/* ./test-repo-sync/
+          cp -r $GITHUB_WORKSPACE/* ./test-repo-sync/
           git -C ./test-repo-sync add .
           git -C ./test-repo-sync commit -m "Syncing with staging repo"
           git -C ./test-repo-sync push
