@@ -20,12 +20,12 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          branch_name="Sync-$(date +'%d/%m/%Y')"
+          branch_name="Auto-sync-$(date +'%d/%m/%Y')"
           destination_repo=https://github.com/Corallo/test-repo-sync.git
           destination_repo_name=test-repo-sync
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
-          git config --global user.name "Auto-sync"
+          git config --global user.name "Corallo"
           git config --global user.email "dellisanti.angelo@gmail.com"
           git clone $destination_repo
           git -C ./$destination_repo_name checkout -b $branch_name 
