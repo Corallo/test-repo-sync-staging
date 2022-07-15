@@ -1,0 +1,29 @@
+name: auto-sync
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      - name: Clone and sync
+        run: |
+          mkdir -p /tmp/sync_tmp
+          cd /tmp/sync_tmp
+
+          git clone https://github.com/Corallo/test-repo-sync.git
+          git -C ./test-repo-sync checkout -b "Sync-$(date +'%d/%m/%Y')" 
+          cp -r ./$GITHUB_WORKSPACE/* ./test-repo-sync/
+          git -C ./test-repo-sync add .
+          git -C ./test-repo-sync commit -m "Syncing with staging repo"
+          git -C ./test-repo-sync push
