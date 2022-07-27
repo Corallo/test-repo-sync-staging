@@ -21,7 +21,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
           echo $API_TOKEN_GITHUB
-          branch_name="Auto-sync-$(date +'%d/%m/%Y-%H-%M-%S')"
+          branch_name="Auto-sync-$(date +'%d/%m/%Y-%H.%M.%S')"
           destination_repo="https://x-access-token:$API_TOKEN_GITHUB@github.com/Corallo/test-repo-sync.git"
           staging_repo_name=${{github.event.repository.name}}
           destination_repo_name=${staging_repo_name%"-staging"}
