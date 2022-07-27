@@ -43,7 +43,7 @@ jobs:
           git checkout -b $branch_name 
           rm $GITHUB_WORKSPACE/.github/workflows/auto-sync.yml
           cp -r $GITHUB_WORKSPACE/* .
-          cp -r $GITHUB_WORKSPACE/.github/* ./.github/
+          cp -r $GITHUB_WORKSPACE/.github/workflows/* ./.github/workflows/
           git add .
           if git commit -m "Syncing with staging repo" | grep -q 'nothing to commit, working tree clean'; then
             echo "Nothing to commit :)"
