@@ -24,6 +24,8 @@ jobs:
           branch_name="Auto-sync-$(date +'%d/%m/%Y')"
           destination_repo="https://x-access-token:$API_TOKEN_GITHUB@github.com/Corallo/test-repo-sync.git"
           destination_repo_name=test-repo-sync
+          echo ${{ github.event.repository.name%-* }}
+          
           git config --global user.name "Corallo"
           git config --global user.email "dellisanti.angelo@gmail.com"
          
