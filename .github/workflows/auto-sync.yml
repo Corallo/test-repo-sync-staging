@@ -33,7 +33,7 @@ jobs:
           git clone $destination_repo
           cd ./$destination_repo_name
           git checkout -b $branch_name 
-          cp -r ../$GITHUB_WORKSPACE/* .
+          cp -r ../$staging_repo_name/* .
           git add .
           if git commit -m "Syncing with staging repo" | grep -q 'nothing to commit, working tree clean'; then
             echo "Nothing to commit :)"
