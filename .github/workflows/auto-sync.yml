@@ -22,9 +22,9 @@ jobs:
         run: |
           echo $API_TOKEN_GITHUB
           branch_name="Auto-sync-$(date +'%Y-%m-%d_%H.%M.%S')"
-          destination_repo="https://github.com/Corallo/test-repo-sync.git"
           staging_repo_name=${{github.event.repository.name}}
           destination_repo_name=${staging_repo_name%"-staging"}
+          destination_repo="https://github.com/Corallo/$destination_repo_name"
           git config --global user.name "Corallo"
           git config --global user.email "dellisanti.angelo@gmail.com"
           
@@ -41,7 +41,9 @@ jobs:
           git clone $destination_repo
           cd ./$destination_repo_name
           git checkout -b $branch_name 
+          rm $GITHUB_WORKSPACE/.github/workflows/auto-sync.yml
           cp -r $GITHUB_WORKSPACE/* .
+          cp $GITHUB_WORKSPACE/.github/* ./.github/*
           git add .
           if git commit -m "Syncing with staging repo" | grep -q 'nothing to commit, working tree clean'; then
             echo "Nothing to commit :)"
