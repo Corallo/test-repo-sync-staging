@@ -31,12 +31,13 @@ jobs:
           mkdir -p /tmp/sync_tmp
           cd /tmp/sync_tmp
           git clone $destination_repo
-          git -C ./$destination_repo_name checkout -b $branch_name 
-          cp -r $GITHUB_WORKSPACE/* ./$destination_repo_name/
-          git -C ./$destination_repo_name add .
-          if git -C ./$destination_repo_name commit -m "Syncing with staging repo" | grep -q 'nothing to commit, working tree clean'; then
+          cd ./$destination_repo_name
+          git checkout -b $branch_name 
+          cp -r ../$GITHUB_WORKSPACE/* .
+          git add .
+          if git commit -m "Syncing with staging repo" | grep -q 'nothing to commit, working tree clean'; then
             echo "Nothing to commit :)"
           else
-             git -C ./$destination_repo_name push --set-upstream origin $branch_name    
+             git push --set-upstream origin $branch_name    
           fi
           
