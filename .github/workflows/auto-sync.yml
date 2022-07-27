@@ -36,7 +36,6 @@ jobs:
           export GIT_ASKPASS=$sync_dir/.git-askpass
           chmod +x $sync_dir/.git-askpass
           
-          
           cd /tmp/sync_tmp
           git clone $destination_repo
           cd ./$destination_repo_name
