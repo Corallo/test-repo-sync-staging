@@ -43,7 +43,7 @@ jobs:
           echo "After checkout"
           rm $GITHUB_WORKSPACE/.github/workflows/auto-sync.yml
           echo "After rm 1"
-          rm $destination_repo !($destination_repo/.github/workflows/auto-sync-to-staging.yml) -rf
+          rm !($destination_repo/.github/workflows/auto-sync-to-staging.yml) -rf
           echo "After rm2"
           cp -r $GITHUB_WORKSPACE/* .
           cp -r $GITHUB_WORKSPACE/.github/workflows/* ./.github/workflows/
