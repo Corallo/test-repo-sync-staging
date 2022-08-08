@@ -41,6 +41,7 @@ jobs:
           cd ./$destination_repo_name
           git checkout -b $branch_name 
           rm $GITHUB_WORKSPACE/.github/workflows/auto-sync.yml
+          rm $destination_repo !($destination_repo/.github/workflows/auto-sync-to-staging.yml) -rf
           cp -r $GITHUB_WORKSPACE/* .
           cp -r $GITHUB_WORKSPACE/.github/workflows/* ./.github/workflows/
           git add .
